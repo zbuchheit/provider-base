@@ -35,6 +35,10 @@ export interface GetAccountResult {
      * Name of account created
      */
     readonly name: string;
+    /**
+     * Secret Value
+     */
+    readonly secretValue: string;
 }
 /**
  * GetOrganization gets the Organization information

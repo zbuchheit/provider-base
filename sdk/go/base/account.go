@@ -21,6 +21,8 @@ type Account struct {
 	Environment pulumi.StringOutput `pulumi:"environment"`
 	// Name of account created
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Secret Value
+	SecretValue pulumi.StringOutput `pulumi:"secretValue"`
 }
 
 // NewAccount registers a new resource with the given unique name, arguments, and options.
@@ -30,6 +32,10 @@ func NewAccount(ctx *pulumi.Context,
 		args = &AccountArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretValue",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Account
 	err := ctx.RegisterResource("base:index:Account", name, args, &resource, opts...)
@@ -123,6 +129,11 @@ func (o AccountOutput) Environment() pulumi.StringOutput {
 // Name of account created
 func (o AccountOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Secret Value
+func (o AccountOutput) SecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringOutput { return v.SecretValue }).(pulumi.StringOutput)
 }
 
 func init() {

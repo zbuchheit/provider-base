@@ -70,6 +70,10 @@ namespace PiersKarsenbarg.Base
         /// Name of account created
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Secret Value
+        /// </summary>
+        public readonly string SecretValue;
 
         [OutputConstructor]
         private GetAccountResult(
@@ -77,11 +81,14 @@ namespace PiersKarsenbarg.Base
 
             string environment,
 
-            string name)
+            string name,
+
+            string secretValue)
         {
             AccountId = accountId;
             Environment = environment;
             Name = name;
+            SecretValue = secretValue;
         }
     }
 }

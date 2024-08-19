@@ -3,6 +3,7 @@ module github.com/pierskarsenbarg/provider-base
 go 1.21.5
 
 require (
+	github.com/blang/semver v3.5.1+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/pulumi/pulumi-go-provider v0.21.0
 	github.com/pulumi/pulumi/pkg/v3 v3.129.0
@@ -48,7 +49,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sts v1.28.6 // indirect
 	github.com/aws/smithy-go v1.20.2 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
-	github.com/blang/semver v3.5.1+incompatible // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/charmbracelet/bubbles v0.16.1 // indirect
 	github.com/charmbracelet/bubbletea v0.25.0 // indirect
@@ -139,6 +139,7 @@ require (
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
 	github.com/skeema/knownhosts v1.2.2 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
+	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect

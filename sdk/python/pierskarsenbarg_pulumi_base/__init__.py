@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .account import *
+from .component import *
 from .get_account import *
 from .provider import *
 
@@ -24,7 +25,8 @@ _utilities.register(
   "mod": "index",
   "fqn": "pierskarsenbarg_pulumi_base",
   "classes": {
-   "base:index:Account": "Account"
+   "base:index:Account": "Account",
+   "base:index:Component": "Component"
   }
  }
 ]

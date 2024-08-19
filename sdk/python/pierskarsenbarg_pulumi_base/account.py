@@ -86,6 +86,9 @@ class Account(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["account_id"] = None
             __props__.__dict__["environment"] = None
+            __props__.__dict__["secret_value"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretValue"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Account, __self__).__init__(
             'base:index:Account',
             resource_name,
@@ -111,6 +114,7 @@ class Account(pulumi.CustomResource):
         __props__.__dict__["account_id"] = None
         __props__.__dict__["environment"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["secret_value"] = None
         return Account(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -136,4 +140,12 @@ class Account(pulumi.CustomResource):
         Name of account created
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="secretValue")
+    def secret_value(self) -> pulumi.Output[str]:
+        """
+        Secret Value
+        """
+        return pulumi.get(self, "secret_value")
 

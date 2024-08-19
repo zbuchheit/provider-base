@@ -18,7 +18,7 @@ __all__ = [
 
 @pulumi.output_type
 class GetAccountResult:
-    def __init__(__self__, account_id=None, environment=None, name=None):
+    def __init__(__self__, account_id=None, environment=None, name=None, secret_value=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -28,6 +28,9 @@ class GetAccountResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if secret_value and not isinstance(secret_value, str):
+            raise TypeError("Expected argument 'secret_value' to be a str")
+        pulumi.set(__self__, "secret_value", secret_value)
 
     @property
     @pulumi.getter(name="accountId")
@@ -53,6 +56,14 @@ class GetAccountResult:
         """
         return pulumi.get(self, "name")
 
+    @property
+    @pulumi.getter(name="secretValue")
+    def secret_value(self) -> str:
+        """
+        Secret Value
+        """
+        return pulumi.get(self, "secret_value")
+
 
 class AwaitableGetAccountResult(GetAccountResult):
     # pylint: disable=using-constant-test
@@ -62,7 +73,8 @@ class AwaitableGetAccountResult(GetAccountResult):
         return GetAccountResult(
             account_id=self.account_id,
             environment=self.environment,
-            name=self.name)
+            name=self.name,
+            secret_value=self.secret_value)
 
 
 def get_account(account_name: Optional[str] = None,
@@ -81,7 +93,8 @@ def get_account(account_name: Optional[str] = None,
     return AwaitableGetAccountResult(
         account_id=pulumi.get(__ret__, 'account_id'),
         environment=pulumi.get(__ret__, 'environment'),
-        name=pulumi.get(__ret__, 'name'))
+        name=pulumi.get(__ret__, 'name'),
+        secret_value=pulumi.get(__ret__, 'secret_value'))
 
 
 @_utilities.lift_output_func(get_account)

@@ -34,6 +34,12 @@ namespace PiersKarsenbarg.Base
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Secret Value
+        /// </summary>
+        [Output("secretValue")]
+        public Output<string> SecretValue { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Account resource with the given unique name, arguments, and options.
@@ -58,6 +64,10 @@ namespace PiersKarsenbarg.Base
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pierskarsenbarg/pulumi-base",
+                AdditionalSecretOutputs =
+                {
+                    "secretValue",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

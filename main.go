@@ -68,5 +68,8 @@ func provider() p.Provider {
 			infer.Function[*pkg.GetAccount, pkg.GetAccountArgs, pkg.AccountState](),
 		},
 		Config: infer.Config[*pkg.Config](),
+		Components: []infer.InferredComponent{
+			infer.Component[*pkg.Component, pkg.ComponentArgs, *pkg.ComponentState](),
+		},
 	})
 }

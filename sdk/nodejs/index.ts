@@ -10,6 +10,11 @@ export type Account = import("./account").Account;
 export const Account: typeof import("./account").Account = null as any;
 utilities.lazyLoad(exports, ["Account"], () => require("./account"));
 
+export { ComponentArgs } from "./component";
+export type Component = import("./component").Component;
+export const Component: typeof import("./component").Component = null as any;
+utilities.lazyLoad(exports, ["Component"], () => require("./component"));
+
 export { GetAccountArgs, GetAccountResult, GetAccountOutputArgs } from "./getAccount";
 export const getAccount: typeof import("./getAccount").getAccount = null as any;
 export const getAccountOutput: typeof import("./getAccount").getAccountOutput = null as any;
@@ -34,6 +39,8 @@ const _module = {
         switch (type) {
             case "base:index:Account":
                 return new Account(name, <any>undefined, { urn })
+            case "base:index:Component":
+                return new Component(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

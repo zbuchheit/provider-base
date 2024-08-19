@@ -46,6 +46,10 @@ export class Account extends pulumi.CustomResource {
      * Name of account created
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Secret Value
+     */
+    public /*out*/ readonly secretValue!: pulumi.Output<string>;
 
     /**
      * Create a Account resource with the given unique name, arguments, and options.
@@ -61,12 +65,16 @@ export class Account extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["environment"] = undefined /*out*/;
+            resourceInputs["secretValue"] = undefined /*out*/;
         } else {
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["environment"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["secretValue"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretValue"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Account.__pulumiType, name, resourceInputs, opts);
     }
 }

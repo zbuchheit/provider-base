@@ -34,6 +34,8 @@ type LookupAccountResult struct {
 	Environment string `pulumi:"environment"`
 	// Name of account created
 	Name string `pulumi:"name"`
+	// Secret Value
+	SecretValue string `pulumi:"secretValue"`
 }
 
 func LookupAccountOutput(ctx *pulumi.Context, args LookupAccountOutputArgs, opts ...pulumi.InvokeOption) LookupAccountResultOutput {
@@ -85,6 +87,11 @@ func (o LookupAccountResultOutput) Environment() pulumi.StringOutput {
 // Name of account created
 func (o LookupAccountResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Secret Value
+func (o LookupAccountResultOutput) SecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.SecretValue }).(pulumi.StringOutput)
 }
 
 func init() {

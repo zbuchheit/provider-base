@@ -16,6 +16,12 @@ resources:
       name: myaccount
     options:
       provider: ${provider}
+  my-component:
+    type: base:Component
+    properties:
+      length: 5
+    options:
+      provider: ${provider}
 variables:
   account:
     fn::invoke:
@@ -26,6 +32,7 @@ variables:
         provider: ${provider}
 
 outputs:
-  myoutput: ${account.name}
+  myoutput: 
+    fn::secret: ${account.secretValue}
   
   
